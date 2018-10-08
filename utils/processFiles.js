@@ -74,6 +74,14 @@ const processFiles = () => {
     });
   };
 
+  /*
+  * @description: Generates a new project from a seed project
+  *               Interpolates variables into the project for projectName, projectAuthor, etc.
+  *
+  * @param: fromDir: String - Directory to create the project from
+  * @param: toDir: String - Directory to put the newly created project into
+  * @param: variables: Object - An object with property values that should be interpolated and replaced throughout each file of the seed project
+  * */
   const generateProjectFromSeed = (fromDir, toDir, variables) => {
     return new Promise((resolve, reject) => {
       try {
