@@ -1,0 +1,30 @@
+{
+  "name": "{%projectName%}",
+  "version": "1.0.0",
+  "description": "Node CLI template project",
+  "main": "app.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "start": "node app.js",
+    "develop": "node app.js",
+    "test": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+    "cli",
+    "template",
+    "node",
+    "boilerplate"
+  ],
+  "author": "{%projectAuthor%}",
+  "license": "ISC",
+  "bugs": {
+    "url": ""
+  },
+  "homepage": ""
+}

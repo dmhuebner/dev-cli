@@ -9,13 +9,14 @@ const consoleStyles = () => {
   };
 
 // Create a horizontal line across the terminal
-  const horizontalLine = () => {
+  const horizontalLine = (lineChar) => {
+    const char = lineChar ? lineChar : '=';
     // Get the available screen size
     const width = process.stdout.columns;
     let line = '';
 
     for (let i = 0; i < width; i++) {
-      line += '=';
+      line += char;
     }
 
     return line;

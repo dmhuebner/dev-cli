@@ -1,0 +1,12 @@
+{
+  "seedProjects": [
+    {
+      "name": "node-cli",
+      "description": "Pure Node.js CLI seed project - No dependencies"
+    },
+    {
+      "name": "example",
+      "description": "Example seed project - just text files"
+    }
+  ]
+}
