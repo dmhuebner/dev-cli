@@ -60,5 +60,8 @@ typings/
 # next.js build output
 .next
 
+# OSX File System
+.DS_Store
+
 # Jet Brains IDEs
 .idea
