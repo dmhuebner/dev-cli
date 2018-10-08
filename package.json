@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Development CLI",
   "main": "app.js",
+  "bin": {
+    "dev-cli": "bin/dev-cli"
+  },
   "scripts": {
     "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
