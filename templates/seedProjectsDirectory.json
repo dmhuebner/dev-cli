@@ -1,12 +1,26 @@
 {
   "seedProjects": [
     {
-      "name": "node-cli",
-      "description": "Pure Node.js CLI seed project - No dependencies"
+      "name": "example",
+      "description": "Example seed project - just text files",
+      "customVariables": {}
     },
     {
-      "name": "example",
-      "description": "Example seed project - just text files"
+      "name": "node-cli",
+      "description": "Pure Node.js CLI seed project - No dependencies",
+      "customVariables": {}
+    },
+    {
+      "name": "node-api",
+      "description": "Pure Node.js API seed project - No dependencies",
+      "customVariables": {}
+    },
+    {
+      "name": "node-express-api",
+      "description": "Node.js Express API seed project",
+      "customVariables": {
+        "projectDescription": "A description of the project"
+      }
     }
   ]
 }
