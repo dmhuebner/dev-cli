@@ -1,7 +1,7 @@
 # dev-cli
 Development CLI made with Node.js
 
-#####To Run Locally:
+##### To Run Locally:
 ```$xslt
 npm i -g .
 ```
