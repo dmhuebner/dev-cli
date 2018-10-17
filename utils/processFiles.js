@@ -16,7 +16,8 @@ const processFiles = () => {
         const replace = variables[key];
         const find = `{%${key}%}`;
 
-        string = string.replace(find, replace);
+        // Interpolate
+        string = string.split(find).join(replace);
       }
     }
 
