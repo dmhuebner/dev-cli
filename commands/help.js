@@ -15,21 +15,21 @@ seedProjectsDirectory.seedProjects.forEach(projectInfo => {
 // const templatesListString = templates.join('\n');
 
 const generateHelpContent = `
-    dev-cli ${consoleStyles.setConsoleColor('lightblue', 'generate')} ${consoleStyles.setConsoleColor('yellow', '<type_of_project> <project_name> <project_author>')} (optional)
+    dev ${consoleStyles.setConsoleColor('lightblue', 'generate')} ${consoleStyles.setConsoleColor('yellow', '<type_of_project> <project_name> <project_author>')} (optional)
 
     ${consoleStyles.setConsoleColor('yellow', '<type_of_project>')} ........ The type of project you want to generate (must match the name of a project seed in templates)
     ${consoleStyles.setConsoleColor('yellow', '<project_name>')} ........... The name of the project
     ${consoleStyles.setConsoleColor('yellow', '<project_author>')} ......... The author of the project
     ${consoleStyles.setConsoleColor('yellow', '<CUSTOM_VARIABLE>...')} ........ Custom variable (there may be multiple) specific to the seed project
     \nTypes of projects you can generate:\n${templatesListString}
-    \nType ${consoleStyles.setConsoleColor('lightblue', 'dev-cli help <type_of_project>')} for more information about generating that type of project.`;
+    \nType ${consoleStyles.setConsoleColor('lightblue', 'dev help <type_of_project>')} for more information about generating that type of project.`;
 
 const mainHelpContent = `
 ${consoleStyles.horizontalLine()}
 ${consoleStyles.verticalSpace()}
-${consoleStyles.centered('dev-cli Help Menu')}
+${consoleStyles.centered('dev Help Menu')}
 
-    dev-cli [command] <options>
+    dev [command] <options>
     ${consoleStyles.setConsoleColor('yellow', 'generate')} ........... generates a seed project based on the second argument you pass
     ${consoleStyles.setConsoleColor('yellow', 'g')} .................. Alias for generate
     ${consoleStyles.setConsoleColor('yellow', 'version')} ............ show package version
@@ -64,7 +64,7 @@ const generateSeedProjectHelpContent = (project) => {
   const customVarsString = customVarsFormattedArray.join(' ');
   let helpStringContent = `${project.description}\n`;
 
-  helpStringContent += `\ndev-cli ${consoleStyles.setConsoleColor('lightblue', 'generate')} ${consoleStyles.setConsoleColor('pink', `${project.name}`)} ${consoleStyles.setConsoleColor('yellow', customVarsString)}\n\n`;
+  helpStringContent += `\ndev ${consoleStyles.setConsoleColor('lightblue', 'generate')} ${consoleStyles.setConsoleColor('pink', `${project.name}`)} ${consoleStyles.setConsoleColor('yellow', customVarsString)}\n\n`;
   helpStringContent += generateProjectVariableHelpDescription(project.customVariables);
 
   return helpStringContent;
