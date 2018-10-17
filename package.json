@@ -4,7 +4,7 @@
   "description": "Development CLI",
   "main": "app.js",
   "bin": {
-    "dev-cli": "bin/dev-cli"
+    "dev": "bin/dev"
   },
   "scripts": {
     "start": "node app.js",

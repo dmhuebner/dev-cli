@@ -8,10 +8,10 @@ npm i -g .
 
 See available commands:
 ```$xslt
-dev-cli help
+dev help
 ```
 
 See details on generator command:
 ```$xslt
-dev-cli help generate
+dev help generate
 ```
