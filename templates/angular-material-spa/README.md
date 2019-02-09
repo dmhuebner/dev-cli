@@ -1,6 +1,12 @@
-# AngularAngMatTemplate
+# {%projectName%}
 
-Template project for an Angular application that uses Angular Material UI components. It has a navbar and some general scaffolding.
+{%projectDescription%}
+
+## Project Setup
+
+```
+npm install
+```
 
 ## Development server
 
