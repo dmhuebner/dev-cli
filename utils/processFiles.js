@@ -79,7 +79,7 @@ const processFiles = () => {
   * @description: Generates a new project from a seed project
   *               Interpolates variables into the project for projectName, projectAuthor, etc.
   *
-  * @param: fromDir: String - Directory to create the project from
+  * @param: fromDir: String - Directory that should be used to create the project
   * @param: toDir: String - Directory to put the newly created project into
   * @param: variables: Object - An object with property values that should be interpolated and replaced throughout each file of the seed project
   * */
