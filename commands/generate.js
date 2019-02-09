@@ -23,7 +23,7 @@ module.exports = (args) => {
 
     // Concatenate basic variables with custom variables for template
     seedProjectDirectory.seedProjects.some(projectSeedConfig => {
-      if (projectSeedConfig.name === args._[1] && projectSeedConfig.customVariables && projectSeedConfig.customVariables) {
+      if (projectSeedConfig.name === args._[1] && projectSeedConfig.customVariables) {
         // Add custom variables
         let varCounter = 0;
 
