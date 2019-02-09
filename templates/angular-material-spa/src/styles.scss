@@ -1,0 +1,40 @@
+/*** Variables ***/
+
+$primary: #3F51B5;
+
+/*** Media Query Breakpoints ***/
+$smBreakpoint: 767px;
+$xsBreakpoint: 467px;
+
+/*** Mixins ***/
+
+@mixin transition($duration) {
+  -webkit-transition: $duration;
+  -moz-transition: $duration;
+  -ms-transition: $duration;
+  -o-transition: $duration;
+  transition: $duration;
+}
+
+@mixin box-shadow($px, $px2, $color) {
+  box-shadow: $px $px $px2 $color;
+  -moz-box-shadow: $px $px $px2 $color;
+  -webkit-box-shadow: $px $px $px2 $color;
+  -o-box-shadow: $px $px $px2 $color;
+}
+
+@mixin text-shadow($px, $px2, $color) {
+  text-shadow: $px $px $px2 $color;
+  -moz-text-shadow: $px $px $px2 $color;
+  -webkit-text-shadow: $px $px $px2 $color;
+  -o-text-shadow: $px $px $px2 $color;
+}
+
+@mixin border-radius($radius) {
+  border-radius: $radius;
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+}
+
+/*** Global Styles ***/
+
