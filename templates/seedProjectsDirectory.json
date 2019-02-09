@@ -21,6 +21,13 @@
       "customVariables": {
         "projectDescription": "A description of the project"
       }
+    },
+    {
+      "name": "angular-material-spa",
+      "description": "An Angular Material SPA with navbar",
+      "customVariables": {
+        "projectDescription": "A description of the project"
+      }
     }
   ]
 }
