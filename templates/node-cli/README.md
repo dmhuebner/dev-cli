@@ -1,9 +1,7 @@
-# {%projectName%}
-##### A Node.js CLI template project.
+# {%projectTitle%}
+##### {%projectDescription%}
 
-This is a nice and quick way to get up and running with a new Node.js CLI app. Its pretty straight forward, has zero npm dependencies, and can easily be expanded upon.
-
-This template is designed to use events to handle user input.
+This project is designed to use events to handle user input.
 
 
 To get started:  

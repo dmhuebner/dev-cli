@@ -1,9 +1,7 @@
-# {%projectName%}
-#### Node.js Express API project
+# {%projectTitle%}
+#### {%projectDescription%}
 
-##### This is a quick way to get up and running with a new Node.js Express API.
-
-This template uses MongoDB and Mongoose to manage data.
+This project uses MongoDB and Mongoose to manage data.
 
 It includes scaffolding for all HTTP request actions for example 'foo' data.
 

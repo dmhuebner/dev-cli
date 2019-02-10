@@ -30,10 +30,9 @@ ${consoleStyles.verticalSpace()}
 ${consoleStyles.centered('dev Help Menu')}
 
     dev [command] <options>
-    ${consoleStyles.setConsoleColor('yellow', 'generate')} ........... generates a seed project based on the second argument you pass
-    ${consoleStyles.setConsoleColor('yellow', 'g')} .................. Alias for generate
-    ${consoleStyles.setConsoleColor('yellow', 'version')} ............ show package version
-    ${consoleStyles.setConsoleColor('yellow', 'help')} ............... show help menu for a command
+    ${consoleStyles.setConsoleColor('yellow', 'generate, g')} ............. generates a project based on a seed template using custom variables you provide.
+    ${consoleStyles.setConsoleColor('yellow', 'version')} ................. show package version
+    ${consoleStyles.setConsoleColor('yellow', 'help, h, man')} ............ show help menu for a command
 
 ${consoleStyles.verticalSpace()}
 ${consoleStyles.horizontalLine()}`;

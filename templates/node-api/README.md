@@ -1,5 +1,5 @@
-# {%projectName%}
-Pure Node.js API template
+# {%projectTitle%}
+{%projectDescription%}
 
 ##### Local Development
 

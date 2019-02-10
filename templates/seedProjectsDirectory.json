@@ -8,25 +8,37 @@
     {
       "name": "node-cli",
       "description": "Pure Node.js CLI seed project - No dependencies",
-      "customVariables": {}
+      "customVariables": {
+        "projectTitle": "Project Title",
+        "projectAuthor": "Project Author",
+        "projectDescription": "Description of project"
+      }
     },
     {
       "name": "node-api",
       "description": "Pure Node.js API seed project - No dependencies",
-      "customVariables": {}
+      "customVariables": {
+        "projectTitle": "Project Title",
+        "projectAuthor": "Project Author",
+        "projectDescription": "Description of project"
+      }
     },
     {
       "name": "node-express-api",
       "description": "Node.js Express API seed project",
       "customVariables": {
-        "projectDescription": "A description of the project"
+        "projectTitle": "Project Title",
+        "projectAuthor": "Project Author",
+        "projectDescription": "Description of project"
       }
     },
     {
       "name": "angular-material-spa",
       "description": "An Angular Material SPA with navbar",
       "customVariables": {
-        "projectDescription": "A description of the project"
+        "projectTitle": "Project Title",
+        "projectAuthor": "Project Author",
+        "projectDescription": "Description of project"
       }
     }
   ]
