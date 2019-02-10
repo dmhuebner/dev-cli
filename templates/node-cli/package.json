@@ -1,7 +1,7 @@
 {
   "name": "{%projectName%}",
   "version": "1.0.0",
-  "description": "Node CLI template project",
+  "description": "{%projectDescription%}",
   "main": "app.js",
   "directories": {
     "lib": "lib"

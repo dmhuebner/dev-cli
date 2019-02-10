@@ -1,4 +1,4 @@
-# {%projectName%}
+# {%projectTitle%}
 
 {%projectDescription%}
 

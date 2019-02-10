@@ -23,11 +23,13 @@ module.exports = () => {
       require('./commands/version')(args);
       break;
     case 'help':
+    case 'h':
+    case 'man':
       require('./commands/help')(args);
       break;
     default:
       console.error(`${consoleStyles.setConsoleColor('red', 'Error:')}" ${cmd}" is not a valid command.`);
-      console.log('Type "help" for a list of valid commands');
+      console.log('Type "dev help" for a list of valid commands');
       break;
   }
-}
+};
