@@ -23,6 +23,7 @@ module.exports = () => {
       require('./commands/version')(args);
       break;
     case 'help':
+    case 'h':
     case 'man':
       require('./commands/help')(args);
       break;
