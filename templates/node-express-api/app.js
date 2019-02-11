@@ -21,7 +21,7 @@ if (config.envName === 'test') {
 }
 
 const app = express(),
-  port = config.port || 3000;
+  port = process.env.NODE_ENV.port || 3000;
 
 // Middleware
 app.use(logger('combined'));
