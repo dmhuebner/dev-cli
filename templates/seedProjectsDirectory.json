@@ -25,11 +25,13 @@
     },
     {
       "name": "node-express-api",
-      "description": "Node.js Express API seed project",
+      "description": "Node.js Express API with full CRUD operations for the first model provided",
       "customVariables": {
         "projectTitle": "Project Title",
         "projectAuthor": "Project Author",
-        "projectDescription": "Description of project"
+        "projectDescription": "Description of project",
+        "firstModelCapitalized": "First Model Name Capitalized (Foo)",
+        "firstModelLowerCase": "First model name lowercase (foo)"
       }
     },
     {

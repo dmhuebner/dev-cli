@@ -1,22 +1,22 @@
 const express = require('express');
 
-const fooRoutes = (Foo) => {
-  const fooRouter = express.Router();
+const {%firstModelLowerCase%}Routes = ({%firstModelCapitalized%}) => {
+  const {%firstModelLowerCase%}Router = express.Router();
 
-  const fooController = require('../controllers/fooController')(Foo);
+  const {%firstModelLowerCase%}Controller = require('../controllers/{%firstModelLowerCase%}Controller')({%firstModelCapitalized%});
 
   /*=========================================
-  * Middleware for routes with :fooId param
+  * Middleware for routes with :{%firstModelLowerCase%}Id param
   *=========================================*/
-  fooRouter.use('/:fooId', (req, res, next) => {
-    Foo.findById(req.params.fooId, (err, foo) => {
+  {%firstModelLowerCase%}Router.use('/:{%firstModelLowerCase%}Id', (req, res, next) => {
+    {%firstModelCapitalized%}.findById(req.params.{%firstModelLowerCase%}Id, (err, {%firstModelLowerCase%}) => {
       if (err) {
         res.status(500).send(err);
-      } else if (foo) {
-        req.foo = foo;
+      } else if ({%firstModelLowerCase%}) {
+        req.{%firstModelLowerCase%} = {%firstModelLowerCase%};
         next();
       } else {
-        res.status(404).send('No foo found');
+        res.status(404).send('No {%firstModelLowerCase%} found');
       }
     });
   });
@@ -24,17 +24,17 @@ const fooRoutes = (Foo) => {
   /*=================
   * Routes exposed
   *=================*/
-  fooRouter.route('/')
-    .post(fooController.post)
-    .get(fooController.get);
+  {%firstModelLowerCase%}Router.route('/')
+    .post({%firstModelLowerCase%}Controller.post)
+    .get({%firstModelLowerCase%}Controller.get);
 
-  fooRouter.route('/:fooId')
-    .get(fooController.getOne)
-    .put(fooController.put)
-    .patch(fooController.patch)
-    .delete(fooController.delete);
+  {%firstModelLowerCase%}Router.route('/:{%firstModelLowerCase%}Id')
+    .get({%firstModelLowerCase%}Controller.getOne)
+    .put({%firstModelLowerCase%}Controller.put)
+    .patch({%firstModelLowerCase%}Controller.patch)
+    .delete({%firstModelLowerCase%}Controller.delete);
 
-  return fooRouter;
+  return {%firstModelLowerCase%}Router;
 };
 
-module.exports = fooRoutes;
+module.exports = {%firstModelLowerCase%}Routes;

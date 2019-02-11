@@ -5,7 +5,7 @@ const express = require('express'),
       debug = require('debug')('app'),
       logger = require('morgan'),
       config = require('./config'),
-      packageJson = require('package');
+      packageJson = require('./package');
 
 
 /*=================
@@ -21,7 +21,7 @@ if (config.envName === 'test') {
 }
 
 const app = express(),
-  port = config.port || 3000;
+  port = process.env.NODE_ENV.port || 3000;
 
 // Middleware
 app.use(logger('combined'));
@@ -43,19 +43,19 @@ app.use((req, res, next) => {
 * Model dependencies
 *======================*/
 
-const Foo = require('./src/models/Foo');
+const {%firstModelCapitalized%} = require('./src/models/{%firstModelCapitalized%}');
 
 /*======================
 * Router Dependencies
 *======================*/
 
-const fooRouter = require('./src/routes/fooRoutes')(Foo);
+const {%firstModelLowerCase%}Router = require('./src/routes/{%firstModelLowerCase%}Routes')({%firstModelCapitalized%});
 
 /*======================
 * Main routes
 *======================*/
 // TODO Add your routes
-app.use('/api/foo', fooRouter);
+app.use('/api/{%firstModelLowerCase%}', {%firstModelLowerCase%}Router);
 
 // Health check
 app.get('/', (req, res) => {
