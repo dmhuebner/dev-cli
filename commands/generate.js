@@ -37,6 +37,15 @@ module.exports = (args) => {
                 message: projectSeedConfig.customVariables[customVar]
               };
 
+              // Set defaults for models
+              if (customVar === 'firstModelCapitalized') {
+                question.default = 'Foo';
+              }
+
+              if (customVar === 'firstModelLowerCase') {
+                question.default = 'foo';
+              }
+
               questionPromptsArray.push(question);
             }
           }
@@ -46,6 +55,7 @@ module.exports = (args) => {
 
       inquirer.prompt(questionPromptsArray).then(answers => {
         // TODO Trim the answers before generating
+        // TODO Check that all the answers are truthy
         answers.projectName = variables.projectName;
 
         const spinner = ora('Generating project...\n').start();
@@ -54,8 +64,8 @@ module.exports = (args) => {
         const currentWorkingDir = process.cwd();
 
         // Generate new project from seed project with customVariable prompt answers
-        processFiles.generateProjectFromSeed(path.join(__dirname, `/../templates/${directory}`), `${currentWorkingDir}/${args._[2]}`, answers).then((result) => {
-          console.log(`${consoleStyles.setConsoleColor('green', result)}\n(${consoleStyles.setConsoleColor('yellow', args._[1].trim())}) project titled "${consoleStyles.setConsoleColor('lightblue', variables.projectName)}" was created successfully!`);
+        processFiles.generateProjectFromSeed(path.join(__dirname, `/../templates/${directory}`), `${currentWorkingDir}/${args._[2]}`, answers).then(() => {
+          console.log(`${consoleStyles.setConsoleColor('green', 'Success')}\n(${consoleStyles.setConsoleColor('yellow', args._[1].trim())}) project titled "${consoleStyles.setConsoleColor('lightblue', variables.projectName)}" was created successfully!`);
           spinner.text = `Project ${consoleStyles.setConsoleColor('yellow', args._[2])} generated successfully`;
           spinner.succeed();
           console.log('|');

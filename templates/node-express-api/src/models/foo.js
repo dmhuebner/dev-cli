@@ -1,7 +1,7 @@
 const mongoose = require('mongoose'),
       Schema = mongoose.Schema;
 
-const fooModel = new Schema({
+const {%firstModelLowerCase%}Model = new Schema({
   someText: {
     type: String,
     required: true
@@ -15,4 +15,4 @@ const fooModel = new Schema({
   }
 });
 
-module.exports = mongoose.model('Foo', fooModel);
+module.exports = mongoose.model('{%firstModelCapitalized%}', {%firstModelLowerCase%}Model);

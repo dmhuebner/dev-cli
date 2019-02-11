@@ -1,19 +1,19 @@
-const fooController = (Foo) => {
+const {%firstModelLowerCase%}Controller = ({%firstModelCapitalized%}) => {
 
   const post = (req, res) => {
-    const foo = new Foo(req.body);
+    const {%firstModelLowerCase%} = new {%firstModelCapitalized%}(req.body);
 
     if (!req.body.someText) {
       res.status(400);
       res.send('Bad Request');
     } else {
-      foo.save((err) => {
+      {%firstModelLowerCase%}.save((err) => {
         if (err) {
           res.status(400);
           res.send(err);
         } else {
           res.status(201);
-          res.send(foo);
+          res.send({%firstModelLowerCase%});
         }
       });
     }
@@ -31,31 +31,31 @@ const fooController = (Foo) => {
     if (JSON.stringify(req.query) !== JSON.stringify(query)) {
       res.status(400).send('Bad Request: Invalid query string');
     } else {
-      Foo.find(query, (err, foos) => {
+      {%firstModelCapitalized%}.find(query, (err, {%firstModelLowerCase%}s) => {
         if (err) {
           res.status(500).send(err);
         } else {
-          res.status(200).json(foos);
+          res.status(200).json({%firstModelLowerCase%}s);
         }
       });
     }
   };
 
   const getOne = (req, res) => {
-    // The middleware in the fooRoute already adds the foo to the request
-    res.status(200).json(req.foo);
+    // The middleware in the {%firstModelLowerCase%}Route already adds the {%firstModelLowerCase%} to the request
+    res.status(200).json(req.{%firstModelLowerCase%});
   };
 
   const put = (req, res) => {
-    req.foo.someText = req.body.someText;
-    req.foo.anotherThing = req.body.anotherThing;
-    req.foo.someBoolean = req.body.someBoolean;
+    req.{%firstModelLowerCase%}.someText = req.body.someText;
+    req.{%firstModelLowerCase%}.anotherThing = req.body.anotherThing;
+    req.{%firstModelLowerCase%}.someBoolean = req.body.someBoolean;
 
-    req.foo.save((err) => {
+    req.{%firstModelLowerCase%}.save((err) => {
       if (err) {
         res.status(500).send(err);
       } else {
-        res.status(200).json(req.foo);
+        res.status(200).json(req.{%firstModelLowerCase%});
       }
     });
   };
@@ -66,20 +66,20 @@ const fooController = (Foo) => {
       delete req.body._id;
     }
     for (let prop in req.body) {
-      req.foo[prop] = req.body[prop];
+      req.{%firstModelLowerCase%}[prop] = req.body[prop];
     }
 
-    req.foo.save((err) => {
+    req.{%firstModelLowerCase%}.save((err) => {
       if (err) {
         res.status(500).send(err);
       } else {
-        res.status(200).json(req.foo);
+        res.status(200).json(req.{%firstModelLowerCase%});
       }
     });
   };
 
-  const deleteFoo = (req, res) => {
-    req.foo.remove((err) => {
+  const delete{%firstModelCapitalized%} = (req, res) => {
+    req.{%firstModelLowerCase%}.remove((err) => {
       if (err) {
         res.status(500).send(err);
       } else {
@@ -94,8 +94,8 @@ const fooController = (Foo) => {
     getOne: getOne,
     put: put,
     patch: patch,
-    delete: deleteFoo
+    delete: delete{%firstModelCapitalized%}
   };
 };
 
-module.exports = fooController;
+module.exports = {%firstModelLowerCase%}Controller;
