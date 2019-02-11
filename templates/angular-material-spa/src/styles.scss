@@ -1,12 +1,31 @@
+@import '~@angular/material/theming';
+
+
+// Include non-theme styles for core.
+@include mat-core();
+
+// Define a theme.
+$primary: mat-palette($mat-indigo);
+$accent:  mat-palette($mat-pink, A200, A100, A400);
+
+$theme: mat-light-theme($primary, $accent);
+
+// Include all theme styles for the components.
+@include angular-material-theme($theme);
+
 /*** Variables ***/
 
-$primary: #3F51B5;
 
-/*** Media Query Breakpoints ***/
-$smBreakpoint: 767px;
-$xsBreakpoint: 467px;
 
 /*** Mixins ***/
+
+@mixin primary-color($theme) {
+  $primary: map-get($theme, primary);
+}
+
+@mixin secondary-color($theme) {
+  $accent: map-get($theme, accent);
+}
 
 @mixin transition($duration) {
   -webkit-transition: $duration;
@@ -35,6 +54,10 @@ $xsBreakpoint: 467px;
   -webkit-border-radius: $radius;
   -moz-border-radius: $radius;
 }
+
+/*** Media Query Breakpoints ***/
+$smBreakpoint: 767px;
+$xsBreakpoint: 467px;
 
 /*** Global Styles ***/
 

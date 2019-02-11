@@ -17,7 +17,7 @@
       }
 
       &.active {
-        background-color: $primary;
+        background-color: mat-color($primary);
         color: #fff;
       }
     }
