@@ -15,3 +15,8 @@ See details on generator command:
 ```$xslt
 dev help generate
 ```
+
+See details on snippet command:
+```$xslt
+dev help snip
+```
