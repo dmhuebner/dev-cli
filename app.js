@@ -19,7 +19,14 @@ module.exports = () => {
     case 'g':
       require('./commands/generate')(args);
       break;
+    case 'snippet':
+    case 'snip':
+    case 's':
+      require('./commands/snip')(args);
+      break;
     case 'version':
+    case '--version':
+    case '-v':
       require('./commands/version')(args);
       break;
     case 'help':

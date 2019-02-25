@@ -1,0 +1,12 @@
+[
+  {
+    "name": "sortArrayOfObjects",
+    "description": "Array Of Objects Sort by prop value",
+    "content": "compareDateCompleted(taskA, taskB) {\n  if (taskA.dateCompleted < taskB.dateCompleted) {\n    return 1;\n  }\n  if (taskA.dateCompleted > taskB.dateCompleted) {\n    return -1;\n  }\n  return 0;\n}"
+  },
+  {
+    "name": "exampleSnippet",
+    "description": "Example function snippet",
+    "content": "function snippetExample(foo) {\n  if (!foo) {\n    return 'not foo';\n  } else {\n    return '🦄';\n  }\n}"
+  }
+]

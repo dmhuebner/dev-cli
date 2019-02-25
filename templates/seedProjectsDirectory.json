@@ -30,7 +30,6 @@
         "projectTitle": "Project Title",
         "projectAuthor": "Project Author",
         "projectDescription": "Description of project",
-        "firstModelCapitalized": "First Model Name Capitalized (Foo)",
         "firstModelLowerCase": "First model name lowercase (foo)"
       }
     },
