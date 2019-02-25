@@ -133,8 +133,19 @@ const processFiles = () => {
     });
   };
 
+  // Parse a JSON string to an object in all cases, without throwing an error
+  const parseJsonToObject = (string) => {
+    try {
+      const obj = JSON.parse(string);
+      return obj;
+    } catch(error) {
+      return {};
+    }
+  };
+
   return {
-    generateProjectFromSeed
+    generateProjectFromSeed,
+    parseJsonToObject
   };
 };
 
