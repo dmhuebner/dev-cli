@@ -45,7 +45,7 @@ ${consoleStyles.verticalSpace()}
     dev ${consoleStyles.setConsoleColor('lightblue', 'snip')} ${consoleStyles.setConsoleColor('yellow', '<new>')}
     dev ${consoleStyles.setConsoleColor('lightblue', 's')} ${consoleStyles.setConsoleColor('yellow', '<new>')}
     
-    ${consoleStyles.setConsoleColor('yellow', '<name>')} ........ The name of the new snippet
+    ${consoleStyles.setConsoleColor('yellow', '<name>')} .................. The name of the new snippet
     ${consoleStyles.setConsoleColor('yellow', '<description>')} ........... A description of the new snippet
 `;
 
