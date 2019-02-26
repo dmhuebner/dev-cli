@@ -10,6 +10,11 @@ const processFiles = () => {
     string = typeof(string) === 'string' && string.length > 0 ? string : '';
     variables = variables && typeof (variables) === 'object' ? variables : {};
 
+    const additionalVariables = createCasingVars(variables);
+
+    // Combine variables with additionalVariables created above
+    variables = {...variables, ...additionalVariables};
+
     // For each key in the variables object, insert its value into the string at the corresponding placeholder
     for (let key in variables) {
       if (variables.hasOwnProperty(key) && typeof(variables[key]) === 'string') {
@@ -76,12 +81,22 @@ const processFiles = () => {
   };
 
   const getModelNameFromVariables = (variables) => {
-    return variables[Object.keys(variables).find(varName => varName === 'firstModelLowerCase')];
+    return variables[Object.keys(variables).find(varName => varName === 'firstModel')];
   };
 
   // TODO this should be put in a utility file under utils
   const capitalizeString = (str) => {
-    return str.split(' ').map(word => word.substr(0, 1).toUpperCase() + word.substr(1)).join(' ');
+    return str.split(' ').map(word => word.substring(0, 1).toUpperCase() + word.substring(1)).join(' ');
+  };
+
+  const camelToKebabCase = (str) => {
+    return str.split('').map((char) => {
+      if (char === char.toUpperCase() && str.indexOf(char) < 0 && char !== '-') {
+        // char is uppercase and '-' should be inserted
+        char = `-${char}`;
+      }
+      return char;
+    }).join('').toLowerCase();
   };
 
   // Checks filename if it contains 'foo' or 'Foo' and renames it with the firstModel variable if there is one
@@ -141,6 +156,21 @@ const processFiles = () => {
     } catch(error) {
       return {};
     }
+  };
+
+  const createCasingVars = (variables) => {
+    const additionalVariables = {};
+    // Create Casing permutations:
+    for (let key in variables) {
+      if (variables.hasOwnProperty(key) && typeof(variables[key]) === 'string') {
+        // Capitalized
+        additionalVariables[`${key}[capitalized]`] = capitalizeString(variables[key]);
+        // Kebab Case
+        additionalVariables[`${key}[kebabCase]`] = camelToKebabCase(variables[key]);
+      }
+    }
+
+    return additionalVariables;
   };
 
   return {

@@ -1,19 +1,19 @@
-const {%firstModelLowerCase%}Controller = ({%firstModelCapitalized%}) => {
+const {%firstModel%}Controller = ({%firstModel[capitalized]%}) => {
 
   const post = (req, res) => {
-    const {%firstModelLowerCase%} = new {%firstModelCapitalized%}(req.body);
+    const {%firstModel%} = new {%firstModel[capitalized]%}(req.body);
 
     if (!req.body.someText) {
       res.status(400);
       res.send('Bad Request');
     } else {
-      {%firstModelLowerCase%}.save((err) => {
+      {%firstModel%}.save((err) => {
         if (err) {
           res.status(400);
           res.send(err);
         } else {
           res.status(201);
-          res.send({%firstModelLowerCase%});
+          res.send({%firstModel%});
         }
       });
     }
@@ -31,31 +31,31 @@ const {%firstModelLowerCase%}Controller = ({%firstModelCapitalized%}) => {
     if (JSON.stringify(req.query) !== JSON.stringify(query)) {
       res.status(400).send('Bad Request: Invalid query string');
     } else {
-      {%firstModelCapitalized%}.find(query, (err, {%firstModelLowerCase%}s) => {
+      {%firstModel[capitalized]%}.find(query, (err, {%firstModel%}s) => {
         if (err) {
           res.status(500).send(err);
         } else {
-          res.status(200).json({%firstModelLowerCase%}s);
+          res.status(200).json({%firstModel%}s);
         }
       });
     }
   };
 
   const getOne = (req, res) => {
-    // The middleware in the {%firstModelLowerCase%}Route already adds the {%firstModelLowerCase%} to the request
-    res.status(200).json(req.{%firstModelLowerCase%});
+    // The middleware in the {%firstModel%}Route already adds the {%firstModel%} to the request
+    res.status(200).json(req.{%firstModel%});
   };
 
   const put = (req, res) => {
-    req.{%firstModelLowerCase%}.someText = req.body.someText;
-    req.{%firstModelLowerCase%}.anotherThing = req.body.anotherThing;
-    req.{%firstModelLowerCase%}.someBoolean = req.body.someBoolean;
+    req.{%firstModel%}.someText = req.body.someText;
+    req.{%firstModel%}.anotherThing = req.body.anotherThing;
+    req.{%firstModel%}.someBoolean = req.body.someBoolean;
 
-    req.{%firstModelLowerCase%}.save((err) => {
+    req.{%firstModel%}.save((err) => {
       if (err) {
         res.status(500).send(err);
       } else {
-        res.status(200).json(req.{%firstModelLowerCase%});
+        res.status(200).json(req.{%firstModel%});
       }
     });
   };
@@ -66,20 +66,20 @@ const {%firstModelLowerCase%}Controller = ({%firstModelCapitalized%}) => {
       delete req.body._id;
     }
     for (let prop in req.body) {
-      req.{%firstModelLowerCase%}[prop] = req.body[prop];
+      req.{%firstModel%}[prop] = req.body[prop];
     }
 
-    req.{%firstModelLowerCase%}.save((err) => {
+    req.{%firstModel%}.save((err) => {
       if (err) {
         res.status(500).send(err);
       } else {
-        res.status(200).json(req.{%firstModelLowerCase%});
+        res.status(200).json(req.{%firstModel%});
       }
     });
   };
 
-  const delete{%firstModelCapitalized%} = (req, res) => {
-    req.{%firstModelLowerCase%}.remove((err) => {
+  const delete{%firstModel[capitalized]%} = (req, res) => {
+    req.{%firstModel%}.remove((err) => {
       if (err) {
         res.status(500).send(err);
       } else {
@@ -94,8 +94,8 @@ const {%firstModelLowerCase%}Controller = ({%firstModelCapitalized%}) => {
     getOne: getOne,
     put: put,
     patch: patch,
-    delete: delete{%firstModelCapitalized%}
+    delete: delete{%firstModel[capitalized]%}
   };
 };
 
-module.exports = {%firstModelLowerCase%}Controller;
+module.exports = {%firstModel%}Controller;
