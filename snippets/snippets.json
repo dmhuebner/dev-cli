@@ -1,12 +1,22 @@
 [
   {
-    "name": "sortArrayOfObjects",
+    "name": "Example Snippet",
+    "description": "Example function snippet",
+    "content": "function snippetExample(foo) {\n  if (!foo) {\n    return 'no foo!';\n  } else {\n    return '⚡';\n  }\n}"
+  },
+  {
+    "name": "Sort Array of Objects",
     "description": "Array Of Objects Sort by prop value",
     "content": "compareDateCompleted(taskA, taskB) {\n  if (taskA.dateCompleted < taskB.dateCompleted) {\n    return 1;\n  }\n  if (taskA.dateCompleted > taskB.dateCompleted) {\n    return -1;\n  }\n  return 0;\n}"
   },
   {
-    "name": "exampleSnippet",
-    "description": "Example function snippet",
-    "content": "function snippetExample(foo) {\n  if (!foo) {\n    return 'not foo';\n  } else {\n    return '🦄';\n  }\n}"
+    "name": "Camel to Kebab Case",
+    "description": "Function that transforms a string from camelCase to kebab-case",
+    "content": "const camelToKebabCase = (str) => {\n  return str.split('').map((char) => {\n    if (char === char.toUpperCase() && str.indexOf(char) < 0 && char !== '-') {\n      // char is uppercase and '-' should be inserted\n      char = `-${char}`;\n    }\n    return char;\n  }).join('').toLowerCase();\n};"
+  },
+  {
+    "name": "Capitalize String",
+    "description": "Capitalize words in a string",
+    "content": "const capitalizeString = (str) => {\n  return str.split(' ').map(word => word.substring(0, 1).toUpperCase() + word.substring(1)).join(' ');\n};"
   }
 ]
