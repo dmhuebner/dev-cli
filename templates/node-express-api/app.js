@@ -43,23 +43,23 @@ app.use((req, res, next) => {
 * Model dependencies
 *======================*/
 
-const {%firstModelCapitalized%} = require('./src/models/{%firstModelCapitalized%}');
+const {%firstModel[capitalized]%} = require('./src/models/{%firstModel[capitalized]%}');
 
 /*======================
 * Router Dependencies
 *======================*/
 
-const {%firstModelLowerCase%}Router = require('./src/routes/{%firstModelLowerCase%}Routes')({%firstModelCapitalized%});
+const {%firstModel%}Router = require('./src/routes/{%firstModel%}Routes')({%firstModel[capitalized]%});
 
 /*======================
 * Main routes
 *======================*/
 // TODO Add your routes
-app.use('/api/{%firstModelLowerCase%}', {%firstModelLowerCase%}Router);
+app.use('/{%firstModel%}', {%firstModel%}Router);
 
 // Health check
 app.get('/', (req, res) => {
-  res.send(`${packageJson.name} is up and running on Port: ${packageJson}`); // TODO replace welcome text
+  res.send(`${packageJson.name} v${packageJson.version} is up and running on Port: ${port}`); // TODO replace welcome text
 });
 
 /*======================
@@ -67,7 +67,7 @@ app.get('/', (req, res) => {
 *======================*/
 
 app.listen(port, () => {
-  console.log(`${chalk.cyan('{%projectName%} is running on PORT:')} ${chalk.green(port)}`); // TODO replace listening text
+  console.log(`${chalk.cyan(`{%projectName%} v${packageJson.version} is running on PORT:`)} ${chalk.green(port)}`); // TODO replace listening text
 });
 
 module.exports = app;

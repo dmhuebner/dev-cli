@@ -1,22 +1,22 @@
 const express = require('express');
 
-const {%firstModelLowerCase%}Routes = ({%firstModelCapitalized%}) => {
-  const {%firstModelLowerCase%}Router = express.Router();
+const {%firstModel%}Routes = ({%firstModel[capitalized]%}) => {
+  const {%firstModel%}Router = express.Router();
 
-  const {%firstModelLowerCase%}Controller = require('../controllers/{%firstModelLowerCase%}Controller')({%firstModelCapitalized%});
+  const {%firstModel%}Controller = require('../controllers/{%firstModel%}Controller')({%firstModel[capitalized]%});
 
   /*=========================================
-  * Middleware for routes with :{%firstModelLowerCase%}Id param
+  * Middleware for routes with :{%firstModel%}Id param
   *=========================================*/
-  {%firstModelLowerCase%}Router.use('/:{%firstModelLowerCase%}Id', (req, res, next) => {
-    {%firstModelCapitalized%}.findById(req.params.{%firstModelLowerCase%}Id, (err, {%firstModelLowerCase%}) => {
+  {%firstModel%}Router.use('/:{%firstModel%}Id', (req, res, next) => {
+    {%firstModel[capitalized]%}.findById(req.params.{%firstModel%}Id, (err, {%firstModel%}) => {
       if (err) {
         res.status(500).send(err);
-      } else if ({%firstModelLowerCase%}) {
-        req.{%firstModelLowerCase%} = {%firstModelLowerCase%};
+      } else if ({%firstModel%}) {
+        req.{%firstModel%} = {%firstModel%};
         next();
       } else {
-        res.status(404).send('No {%firstModelLowerCase%} found');
+        res.status(404).send('No {%firstModel%} found');
       }
     });
   });
@@ -24,17 +24,17 @@ const {%firstModelLowerCase%}Routes = ({%firstModelCapitalized%}) => {
   /*=================
   * Routes exposed
   *=================*/
-  {%firstModelLowerCase%}Router.route('/')
-    .post({%firstModelLowerCase%}Controller.post)
-    .get({%firstModelLowerCase%}Controller.get);
+  {%firstModel%}Router.route('/')
+    .post({%firstModel%}Controller.post)
+    .get({%firstModel%}Controller.get);
 
-  {%firstModelLowerCase%}Router.route('/:{%firstModelLowerCase%}Id')
-    .get({%firstModelLowerCase%}Controller.getOne)
-    .put({%firstModelLowerCase%}Controller.put)
-    .patch({%firstModelLowerCase%}Controller.patch)
-    .delete({%firstModelLowerCase%}Controller.delete);
+  {%firstModel%}Router.route('/:{%firstModel%}Id')
+    .get({%firstModel%}Controller.getOne)
+    .put({%firstModel%}Controller.put)
+    .patch({%firstModel%}Controller.patch)
+    .delete({%firstModel%}Controller.delete);
 
-  return {%firstModelLowerCase%}Router;
+  return {%firstModel%}Router;
 };
 
-module.exports = {%firstModelLowerCase%}Routes;
+module.exports = {%firstModel%}Routes;

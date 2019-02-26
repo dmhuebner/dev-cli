@@ -38,12 +38,7 @@ module.exports = (args) => {
                 default: projectSeedConfig.customVariables[customVar]
               };
 
-              // Set defaults for models
-              if (customVar === 'firstModelCapitalized') {
-                question.default = 'Foo';
-              }
-
-              if (customVar === 'firstModelLowerCase') {
+              if (customVar === 'firstModel') {
                 question.default = 'foo';
               }
 
@@ -58,8 +53,6 @@ module.exports = (args) => {
         // TODO Trim the answers before generating
         // TODO Check that all the answers are truthy
         answers.projectName = variables.projectName;
-        // Create capitalized model var permutation
-        answers.firstModelCapitalized = answers.firstModelLowerCase.substring(0, 1).toUpperCase() + answers.firstModelLowerCase.substring(1);
 
         const spinner = ora('Generating project...\n').start();
         // give processFiles.generateProjectFromSeed a directory to interpolate all of the files in and copy to the user's current working directory
