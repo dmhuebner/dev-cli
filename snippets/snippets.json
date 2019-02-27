@@ -12,7 +12,7 @@
   {
     "name": "Camel to Kebab Case",
     "description": "Function that transforms a string from camelCase to kebab-case",
-    "content": "const camelToKebabCase = (str) => {\n  return str.split('').map((char) => {\n    if (char === char.toUpperCase() && str.indexOf(char) < 0 && char !== '-') {\n      // char is uppercase and '-' should be inserted\n      char = `-${char}`;\n    }\n    return char;\n  }).join('').toLowerCase();\n};"
+    "content": "const camelToKebabCase = (str) => {\n  return str.split('').map((char) => {\n    if (char === char.toUpperCase() && str.indexOf(char) > 0 && char !== '-') {\n      // char is uppercase and '-' should be inserted\n      char = `-${char}`;\n    }\n    return char;\n  }).join('').toLowerCase();\n};"
   },
   {
     "name": "Capitalize String",
