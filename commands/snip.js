@@ -86,8 +86,19 @@ module.exports = (args) => {
                 const rawFileData = fs.readFileSync(path.join(__dirname, `/../snippets`, 'snippets.json'));
                 const parsedData = processFiles.parseJsonToObject(rawFileData);
 
+                const compareName = (a, b) => {
+                    if (a.name > b.name) {
+                        return 1;
+                    }
+                    if (a.name < b.name) {
+                        return -1;
+                    }
+                    return 0;
+                };
+
                 // Create list of snippets for user to choose from
                 parsedData.push(answers);
+                parsedData.sort(compareName);
 
                 fs.writeFileSync(path.join(__dirname, `/../snippets/snippets.json`), JSON.stringify(parsedData));
 
