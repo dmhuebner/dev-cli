@@ -30,8 +30,8 @@
     "content": "function rotateImage(a) {\n    return a.map((row, index) => {\n        return a.map((innerArr, innerIndex) => a[innerIndex][index]).reverse();\n    });\n}\n"
   },
   {
-    "name": "Sort Array of Objects",
-    "description": "Array Of Objects Sort by prop value",
+    "name": "Sort Array of Objects Comparator",
+    "description": "A Comparator callback function to sort an Array Of Objects by property value",
     "content": "const compareName = (a, b) => {\n    if (a.name > b.name) {\n        return 1;\n    }\n    if (a.name < b.name) {\n        return -1;\n    }\n    return 0;\n};"
   }
 ]
