@@ -80,10 +80,6 @@ const processFiles = () => {
     });
   };
 
-  const getModelNameFromVariables = (variables) => {
-    return variables[Object.keys(variables).find(varName => varName === 'firstModel')];
-  };
-
   // TODO this should be put in a utility file under utils
   const capitalizeString = (str) => {
     return str.split(' ').map(word => word.substring(0, 1).toUpperCase() + word.substring(1)).join(' ');
@@ -99,22 +95,16 @@ const processFiles = () => {
     }).join('').toLowerCase();
   };
 
-  // Checks filename if it contains 'foo' or 'Foo' and renames it with the firstModel variable if there is one
-  const renameFilesWithModelNames = (toDir, fileName, variables) => {
-    // Check if fileName contains
-    if (fileName.indexOf('foo') > -1 || fileName.indexOf('Foo') > -1) {
-      const modelName = getModelNameFromVariables(variables);
-      if (modelName) {
-        const newFileName = fileName.replace('foo', modelName).replace('Foo', capitalizeString(modelName));
-        fs.renameSync(path.join(toDir, fileName), path.join(toDir, newFileName));
-        return 'Success';
-      }
-    }
+  // Interpolates fileNames with generator seed project's custom variables
+  const interpolateFileNames = (toDir, fileName, variables) => {
+    const newFileName = interpolate(fileName, variables);
+    fs.renameSync(path.join(toDir, fileName), path.join(toDir, newFileName));
+    return 'Success';
   };
 
   /*
   * @description: Generates a new project from a seed project
-  *               Interpolates variables into the project for projectName, projectAuthor, etc.
+  *               Interpolates custom variables into the project such as projectName, projectAuthor, etc.
   *
   * @param: fromDir: String - Directory that should be used to create the project
   * @param: toDir: String - Directory to put the newly created project into
@@ -131,7 +121,7 @@ const processFiles = () => {
               return writeInterpolatedFile(toDir, element, fileContent, variables);
             }).then(() => {
               // Rename any files that start with foo if a modelVariable is passed in
-              return renameFilesWithModelNames(toDir, element, variables);
+              return interpolateFileNames(toDir, element, variables);
             }).then(result => {
               resolve(result);
             }).catch(error => {
