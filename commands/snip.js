@@ -44,13 +44,17 @@ module.exports = (args) => {
             clipboardy.writeSync(answers.chosenSnippet.content);
 
             console.log('|');
+            console.log(`| ${consoleStyles.setConsoleColor('lightblue', `${answers.chosenSnippet.description}`)}`);
+            console.log('|---------------');
+            console.log('|');
             console.log('');
             console.log('');
             console.log(`${consoleStyles.setConsoleColor('yellow', `${answers.chosenSnippet.content}`)}`);
             console.log('');
             console.log('');
             console.log('|');
-            console.log(`${consoleStyles.setConsoleColor('pink', `Copied `)}${consoleStyles.setConsoleColor('yellow', `${answers.chosenSnippet.name}`)}${consoleStyles.setConsoleColor('pink', ` to Clipboard!`)}`);
+            console.log('---------------');
+            console.log(`${consoleStyles.setConsoleColor('pink', `✓ Copied `)}${consoleStyles.setConsoleColor('lightblue', `${answers.chosenSnippet.name}`)}${consoleStyles.setConsoleColor('pink', ` to Clipboard!`)}`);
             console.log(consoleStyles.horizontalLine('-'));
         });
     };
@@ -100,13 +104,17 @@ module.exports = (args) => {
                 fs.writeFileSync(path.join(__dirname, `/../snippets/snippets.json`), JSON.stringify(parsedData));
 
                 console.log('|');
+                console.log(`| ${consoleStyles.setConsoleColor('lightblue', `${answers.description}`)}`);
+                console.log('|---------------');
+                console.log('|');
                 console.log('');
                 console.log('');
                 console.log(`${consoleStyles.setConsoleColor('yellow', `${fromClipboard}`)}`);
                 console.log('');
                 console.log('');
                 console.log('|');
-                console.log(`${consoleStyles.setConsoleColor('green', `Created `)}${consoleStyles.setConsoleColor('yellow', `${answers.name}`)} Snippet from ${consoleStyles.setConsoleColor('pink', `clipboard`)} content!`);
+                console.log('---------------');
+                console.log(`${consoleStyles.setConsoleColor('green', `✓ Created `)}${consoleStyles.setConsoleColor('lightblue', `${answers.name}`)} Snippet from ${consoleStyles.setConsoleColor('pink', `clipboard`)} content!`);
                 console.log(consoleStyles.horizontalLine('-'));
             });
         } else {
