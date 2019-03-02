@@ -1,7 +1,7 @@
 [
   {
     "name": "Angular Behavior Subject",
-    "description": "A Behavior Subject as an Observable in an the context of Angular",
+    "description": "A Behavior Subject as an Observable in the context of Angular",
     "content": "currentTimerValueSubject: BehaviorSubject<number> = new BehaviorSubject<number>();\ncurrentTimerValue$: Observable<number> = this.currentTimerValueSubject.asObservable();"
   },
   {
