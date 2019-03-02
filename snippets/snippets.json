@@ -10,13 +10,28 @@
     "content": "compareDateCompleted(taskA, taskB) {\n  if (taskA.dateCompleted < taskB.dateCompleted) {\n    return 1;\n  }\n  if (taskA.dateCompleted > taskB.dateCompleted) {\n    return -1;\n  }\n  return 0;\n}"
   },
   {
-    "name": "Camel to Kebab Case",
-    "description": "Function that transforms a string from camelCase to kebab-case",
-    "content": "const camelToKebabCase = (str) => {\n  return str.split('').map((char) => {\n    if (char === char.toUpperCase() && str.indexOf(char) > 0 && char !== '-') {\n      // char is uppercase and '-' should be inserted\n      char = `-${char}`;\n    }\n    return char;\n  }).join('').toLowerCase();\n};"
-  },
-  {
     "name": "Capitalize String",
     "description": "Capitalize words in a string",
     "content": "const capitalizeString = (str) => {\n  return str.split(' ').map(word => word.substring(0, 1).toUpperCase() + word.substring(1)).join(' ');\n};"
+  },
+  {
+    "name": "Camel to Kebab Case",
+    "description": "A function that transforms a string from camelCase to kebabCase",
+    "content": "const camelToKebabCase = (str) => {\n  return str.split('').map((char) => {\n    if (char === char.toUpperCase() && str.indexOf(char) > 0 && char !== '-') {\n      char = `-${char}`;\n    }\n    return char;\n  }).join('').toLowerCase();\n};"
+  },
+  {
+    "name": "Rotate 2D Array Matrix (Image)",
+    "description": "Given an n x n 2D array matrix that represents an image, rotate the image by 90 degrees clockwise",
+    "content": "function rotateImage(a) {\n    return a.map((row, index) => {\n        return a.map((innerArr, innerIndex) => a[innerIndex][index]).reverse();\n    });\n}\n"
+  },
+  {
+    "name": "Angular Behavior Subject",
+    "description": "A Behavior Subject as an Observable in an the context of Angular",
+    "content": "currentTimerValueSubject: BehaviorSubject<number> = new BehaviorSubject<number>();\ncurrentTimerValue$: Observable<number> = this.currentTimerValueSubject.asObservable();"
+  },
+  {
+    "name": "Angular Timer Pipe",
+    "description": "Angular Timer Pipe that takes seconds and formats them into a timer",
+    "content": "import { Pipe, PipeTransform } from '@angular/core';\n\n@Pipe({\n  name: 'timer'\n})\nexport class TimerPipe implements PipeTransform {\n\n  transform(seconds: any, args?: any): any {\n    const wholeSeconds = Math.floor(seconds);\n    const minutes = Math.floor(seconds / 60);\n\n    let secondsLeft: number | string = wholeSeconds % 60;\n    if (secondsLeft < 10) {\n      secondsLeft = '0' + secondsLeft;\n    }\n\n    const output = minutes + ':' + secondsLeft;\n\n    return output;\n  }\n\n}"
   }
 ]
