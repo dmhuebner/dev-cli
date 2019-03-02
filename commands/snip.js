@@ -9,11 +9,7 @@ const consoleStyles = require('../utils/consoleStyles')(),
 module.exports = (args) => {
     const snippets = fs.readdirSync(path.join(__dirname, '/../snippets'));
 
-    // Check that there was only the one "snip" argument passed
-    if (snippets && snippets.length && args._.length < 2) {
-
-        // TODO the contents of this if block should be a function
-
+    const selectSnippet = () => {
         console.log(consoleStyles.horizontalLine('-'));
         console.log(consoleStyles.setConsoleColor('lightblue', `Choose a Snippet to copy to your clipboard`));
 
@@ -57,8 +53,9 @@ module.exports = (args) => {
             console.log(`${consoleStyles.setConsoleColor('pink', `Copied `)}${consoleStyles.setConsoleColor('yellow', `${answers.chosenSnippet.name}`)}${consoleStyles.setConsoleColor('pink', ` to Clipboard!`)}`);
             console.log(consoleStyles.horizontalLine('-'));
         });
-    } else if (snippets && snippets.length && args._.length === 2 && args._[1].toLowerCase() === 'new') {
-        // TODO create new snippets
+    };
+
+    const createNewSnippet = () => {
         console.log(consoleStyles.horizontalLine('-'));
         console.log(consoleStyles.setConsoleColor('lightblue', `Create a new Snippet`));
 
@@ -86,8 +83,19 @@ module.exports = (args) => {
                 const rawFileData = fs.readFileSync(path.join(__dirname, `/../snippets`, 'snippets.json'));
                 const parsedData = processFiles.parseJsonToObject(rawFileData);
 
+                const compareName = (a, b) => {
+                    if (a.name > b.name) {
+                        return 1;
+                    }
+                    if (a.name < b.name) {
+                        return -1;
+                    }
+                    return 0;
+                };
+
                 // Create list of snippets for user to choose from
                 parsedData.push(answers);
+                parsedData.sort(compareName);
 
                 fs.writeFileSync(path.join(__dirname, `/../snippets/snippets.json`), JSON.stringify(parsedData));
 
@@ -104,9 +112,17 @@ module.exports = (args) => {
         } else {
             console.log(`${consoleStyles.setConsoleColor('red', 'Error:')} Unable to create snippet. There is nothing copied to your device's clipboard. Copy something to your clipboard to create a snippet.`);
         }
+    };
+
+    // Check that there was only the one "snip" argument passed
+    if (snippets && snippets.length && args._.length < 2) {
+        selectSnippet();
+        // Check if the second argument is 'new'
+    } else if (snippets && snippets.length && args._.length === 2 && args._[1].toLowerCase() === 'new') {
+        createNewSnippet();
     } else {
         if (snippets && snippets.length) {
-            console.log(`${consoleStyles.setConsoleColor('red', 'Error:')} Invalid number or arguments or type of arguments. Type "${consoleStyles.setConsoleColor('lightblue', `dev help snippet`)}" for information on how to use snippet.`);
+            console.log(`${consoleStyles.setConsoleColor('red', 'Error:')} Invalid number of arguments or type of arguments. Type "${consoleStyles.setConsoleColor('lightblue', `dev help snippet`)}" for information on how to use snippet.`);
         } else {
             console.log(`${consoleStyles.setConsoleColor('red', 'Error:')} No Snippets found. You must add snippets before you can use this command.`);
         }
