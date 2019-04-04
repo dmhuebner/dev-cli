@@ -87,9 +87,9 @@ const processFiles = () => {
 
   const camelToKebabCase = (str) => {
     return str.split('').map((char) => {
-      if (char === char.toUpperCase() && str.indexOf(char) < 0 && char !== '-') {
+      if (char !== '-' && char === char.toUpperCase() && str.indexOf(char) > 0) {
         // char is uppercase and '-' should be inserted
-        char = `-${char}`;
+        return `-${char}`;
       }
       return char;
     }).join('').toLowerCase();
