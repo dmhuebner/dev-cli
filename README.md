@@ -67,7 +67,11 @@ You can add a capitalized permutation of **{%firstModel%}** within the template 
 
 **kebabCase**
 
-You can add a a kebab-case permutation of **{%firstModel%}** within the template project like this: **{%firstModel[kebabCase]%}** which would result in a value of 'foo-bar'.
+You can add a kebab-case permutation of **{%firstModel%}** within the template project like this: **{%firstModel[kebabCase]%}** which would result in a value of 'foo-bar'.
+
+**underscoreCase**
+
+You can add an underscore_case permutation of **{%firstModel%}** within the template project like this: **{%firstModel[underscoreCase]%}** which would result in a value of 'foo_bar'.
 
 ##### New Template Projects must be added to the "templates" directory within the dev-cli project.
 

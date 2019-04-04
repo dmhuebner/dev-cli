@@ -85,11 +85,11 @@ const processFiles = () => {
     return str.split(' ').map(word => word.substring(0, 1).toUpperCase() + word.substring(1)).join(' ');
   };
 
-  const camelToKebabCase = (str) => {
+  const camelToKebabCase = (str, delimiter = '-') => {
     return str.split('').map((char) => {
-      if (char !== '-' && char === char.toUpperCase() && str.indexOf(char) > 0) {
-        // char is uppercase and '-' should be inserted
-        return `-${char}`;
+      if (char !== delimiter && char === char.toUpperCase() && str.indexOf(char) > 0) {
+        // char is uppercase and delimiter should be inserted
+        return `${delimiter}${char}`;
       }
       return char;
     }).join('').toLowerCase();
@@ -160,6 +160,8 @@ const processFiles = () => {
         additionalVariables[`${key}[capitalized]`] = capitalizeString(variables[key]);
         // Kebab Case
         additionalVariables[`${key}[kebabCase]`] = camelToKebabCase(variables[key]);
+        // Underscore Case
+        additionalVariables[`${key}[underscoreCase]`] = camelToKebabCase(variables[key], '_');
       }
     }
 
