@@ -113,15 +113,18 @@ const processFiles = () => {
   const generateProjectFromSeed = (fromDir, toDir, variables) => {
     return new Promise((resolve, reject) => {
       try {
-        fs.mkdirSync(toDir);
+        // Interpolate toDir directory names
+        const interpolatedToDir = interpolate(toDir, variables);
+
+        fs.mkdirSync(interpolatedToDir);
         fs.readdirSync(fromDir).forEach(element => {
           // Check if element in the directory is a file
           if (fs.lstatSync(path.join(fromDir, element)).isFile()) {
             return readFile(fromDir, element).then((fileContent) => {
-              return writeInterpolatedFile(toDir, element, fileContent, variables);
+              return writeInterpolatedFile(interpolatedToDir, element, fileContent, variables);
             }).then(() => {
               // Rename any files that start with foo if a modelVariable is passed in
-              return interpolateFileNames(toDir, element, variables);
+              return interpolateFileNames(interpolatedToDir, element, variables);
             }).then(result => {
               resolve(result);
             }).catch(error => {
@@ -129,7 +132,7 @@ const processFiles = () => {
             });
           } else {
             // If its not a file its a directory - recursively generate files within that directory
-            generateProjectFromSeed(path.join(fromDir, element), path.join(toDir, element), variables);
+            generateProjectFromSeed(path.join(fromDir, element), path.join(interpolatedToDir, element), variables);
           }
         });
       } catch (error) {
