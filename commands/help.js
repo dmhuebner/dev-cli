@@ -1,9 +1,29 @@
 const consoleStyles = require('../utils/consoleStyles')(),
       fs = require('fs'),
       path = require('path'),
-      seedProjectsDirectory = require('../templates/seedProjectsDirectory');
+      processConfigs = require('../utils/processConfigs')();
 
-const templates = fs.readdirSync(path.join(__dirname, '/../templates'));
+let templates,
+    seedProjectsDirectory;
+
+const parsedConfigData = processConfigs.getConfigs();
+// TODO There should be some error handling for if you don't provide a valid directory - like if there is no seedProjectsDirectory.json
+
+const currentTemplatesDirectory = parsedConfigData && parsedConfigData.generator && parsedConfigData.generator.templatesDirectory ? parsedConfigData.generator.templatesDirectory : null;
+
+// Set the templatesSourceDirectory to a custom templates directory if there is one. Otherwise default to the internal templates directory.
+if (currentTemplatesDirectory && typeof(currentTemplatesDirectory) === 'string' && currentTemplatesDirectory.trim() !== 'none') {
+
+  templates = fs.readdirSync(currentTemplatesDirectory);
+
+  seedProjectsDirectory = processConfigs.generator.getSeedProjectsDir(currentTemplatesDirectory);
+  console.log('Custom templates dir');
+} else {
+  templates = fs.readdirSync(path.join(__dirname, '/../templates'));
+  seedProjectsDirectory = require('../templates/seedProjectsDirectory')
+}
+
+
 let templatesListString = '';
 
 seedProjectsDirectory.seedProjects.forEach(projectInfo => {

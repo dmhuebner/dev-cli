@@ -169,6 +169,7 @@ const processFiles = () => {
   };
 
   return {
+    readFile,
     generateProjectFromSeed,
     parseJsonToObject
   };
