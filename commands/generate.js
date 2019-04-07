@@ -3,11 +3,29 @@ const consoleStyles = require('../utils/consoleStyles')(),
     path = require('path'),
     fs = require('fs'),
     ora = require('ora'),
-    inquirer = require('inquirer');
-    seedProjectDirectory = require('../templates/seedProjectsDirectory');
+    inquirer = require('inquirer'),
+    processConfigs = require('../utils/processConfigs')();
 
 module.exports = (args) => {
-  const templates = fs.readdirSync(path.join(__dirname, '/../templates'));
+  let templates;
+  let templatesSourceDirectory;
+  let seedProjectsDirectory;
+  const parsedConfigData = processConfigs.getConfigs();
+  // TODO There should be some error handling for if you don't provide a valid directory - like if there is no seedProjectsDirectory.json
+
+  const currentTemplatesDirectory = parsedConfigData && parsedConfigData.generator && parsedConfigData.generator.templatesDirectory ? parsedConfigData.generator.templatesDirectory : null;
+
+  // Set the templatesSourceDirectory to a custom templates directory if there is one. Otherwise default to the internal templates directory.
+  if (currentTemplatesDirectory && typeof(currentTemplatesDirectory) === 'string' && currentTemplatesDirectory.trim().toLowerCase() !== 'none') {
+    templates = fs.readdirSync(currentTemplatesDirectory);
+    templatesSourceDirectory = currentTemplatesDirectory;
+
+    seedProjectsDirectory = processConfigs.generator.getSeedProjectsDir(templatesSourceDirectory);
+  } else {
+    templates = fs.readdirSync(path.join(__dirname, '/../templates'));
+    templatesSourceDirectory = path.join(__dirname, '/../templates');
+    seedProjectsDirectory = require('../templates/seedProjectsDirectory');
+  }
 
   // Check if there is a template that matches the project_type argument
   if (templates && templates.length && templates.indexOf(args._[1].trim()) !== -1) {
@@ -24,7 +42,7 @@ module.exports = (args) => {
       const questionPromptsArray = [];
 
       // Concatenate basic variables with custom variables for template
-      seedProjectDirectory.seedProjects.some(projectSeedConfig => {
+      seedProjectsDirectory.seedProjects.some(projectSeedConfig => {
         if (projectSeedConfig.name === args._[1] && projectSeedConfig.customVariables) {
 
           // Create question objects for each customVariable in the seed template
@@ -60,7 +78,7 @@ module.exports = (args) => {
         const currentWorkingDir = process.cwd();
 
         // Generate new project from seed project with customVariable prompt answers
-        processFiles.generateProjectFromSeed(path.join(__dirname, `/../templates/${directory}`), `${currentWorkingDir}/${args._[2]}`, answers).then(() => {
+        processFiles.generateProjectFromSeed(`${templatesSourceDirectory}/${directory}`, `${currentWorkingDir}/${args._[2]}`, answers).then(() => {
           console.log(`${consoleStyles.setConsoleColor('green', 'Success')}\n(${consoleStyles.setConsoleColor('yellow', args._[1].trim())}) project titled "${consoleStyles.setConsoleColor('lightblue', variables.projectName)}" was created successfully!`);
           spinner.text = `Project ${consoleStyles.setConsoleColor('yellow', args._[2])} generated successfully`;
           spinner.succeed();
@@ -76,5 +94,7 @@ module.exports = (args) => {
     }
   } else {
     console.log(`${consoleStyles.setConsoleColor('red', 'Error:')} invalid argument. Cannot generate a project with '${args._[1]}' enter 'dev help generate' to see the options available`);
+    console.log('------');
+    console.log(`${consoleStyles.setConsoleColor('lightblue', 'Tip:')} Check to see which directory the dev-cli is configured to use for the generator command. enter 'dev help config generate' for help changing the Seed Templates directory`);
   }
 };

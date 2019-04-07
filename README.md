@@ -26,6 +26,16 @@ See details on snippet command:
 dev help snip
 ```
 
+See details on config command:
+```$xslt
+dev help config
+```
+
+See details on generate command configuration:
+```$xslt
+dev help config-generate
+```
+
 
 ## Generate
 
@@ -111,6 +121,111 @@ dev snip new
 ```
 
 Once you enter values for the name and description, your new snippet will be saved and ready to use.
+
+## Config
+
+The shorthand command is **dev config**
+
+The **config** command lets you configure settings for a given CLI command. 
+
+See details on config command:
+```$xslt
+dev help config
+```
+
+#### Configuring Generate command
+
+Enter a custom templates directory for the generate command to use.
+A custom generatable templates directory should include at least one generatable template project and a **seedProjectsDirectory.json** file that looks something like this:
+
+```
+{
+  "seedProjects": [
+    {
+      "name": "example",
+      "description": "Example seed project - just text files",
+      "customVariables": {}
+    },
+    {
+      "name": "node-cli",
+      "description": "Pure Node.js CLI seed project - No dependencies",
+      "customVariables": {
+        "projectTitle": "Project Title",
+        "projectAuthor": "Project Author",
+        "projectDescription": "Description of project"
+      }
+    },
+    {
+      "name": "node-api",
+      "description": "Pure Node.js API seed project - No dependencies",
+      "customVariables": {
+        "projectTitle": "Project Title",
+        "projectAuthor": "Project Author",
+        "projectDescription": "Description of project"
+      }
+    },
+    {
+      "name": "node-express-api",
+      "description": "Node.js Express API with full CRUD operations for the first model provided",
+      "customVariables": {
+        "projectTitle": "Project Title",
+        "projectAuthor": "Project Author",
+        "projectDescription": "Description of project",
+        "firstModel": "First model name camelCase (foo)"
+      }
+    },
+    {
+      "name": "angular-material-spa",
+      "description": "An Angular Material SPA with navbar",
+      "customHelp": "This is some extra help information specific to the angular-material-spa generatable template. Any special instructions should be included here.",
+      "customVariables": {
+        "projectTitle": "Project Title",
+        "projectAuthor": "Project Author",
+        "projectDescription": "Description of project"
+      }
+    }
+  ]
+}
+
+```
+
+**IMPORTANT: The name of each generatable template project must match the name of the corresponding template meta-data object in the array within the seedProjectsDirectory.json file.**
+
+For the example above:
+
+The **templates** directory should look like this: (The '>' indicates a directory)
+
+```
+templates/
+   > example
+   > node-cli
+   > node-api
+   > node-express-api
+   > angular-material-spa
+     seedProjectsDirectory.json
+```
+
+#### To point dev-cli generate command to your custom generatable templates directory:
+
+```
+dev config generate
+```
+
+Enter the path to the directory you want the generate command to use:
+
+Ex. **/Users/someuser/Code/templates/generatables**
+
+#### To check if a custom templates directory is set:
+
+```
+dev help config-generate
+```
+
+#### To reset the generatable templates directory to the default, internal templates directory:
+
+```
+dev config generate reset
+```
 
 ---
 

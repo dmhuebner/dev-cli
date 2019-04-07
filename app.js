@@ -24,6 +24,10 @@ module.exports = () => {
     case 's':
       require('./commands/snip')(args);
       break;
+    case 'config':
+    case 'c':
+      require('./commands/config')(args);
+      break;
     case 'version':
     case '--version':
     case '-v':
