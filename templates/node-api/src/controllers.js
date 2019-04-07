@@ -7,11 +7,11 @@ const controllers = () => {
   const ping = (data, callback) => {
     // Callback HTTP status code and payload
     callback(200, {routeName: 'ping'});
-  }
+  };
 
   const notFound = (data, callback) => {
     callback(404);
-  }
+  };
 
   /* ======= THE FOLLOWING ARE A COUPLE EXAMPLE ROUTE HANDLERS TO POST AND GET USERS. THEY SHOULD BE REPLACED =======*/
 
