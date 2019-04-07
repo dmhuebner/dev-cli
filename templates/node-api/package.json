@@ -1,7 +1,7 @@
 {
   "name": "{%projectName%}",
   "version": "1.0.0",
-  "description": "Pure Node.js API template",
+  "description": "{%projectDescription%}",
   "main": "app.js",
   "scripts": {
     "start": "NODE_ENV=production node app.js",
