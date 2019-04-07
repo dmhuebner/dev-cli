@@ -2,6 +2,12 @@
 Development CLI made with Node.js that includes tools created to help improve development efficiency.
 
 ##### To Install:
+
+```$xslt
+npm i -g @dhuebner/dev-cli
+```
+
+##### To Install locally for development:
 Clone this Repo and cd into it to install:
 
 ```$xslt
