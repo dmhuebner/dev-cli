@@ -2,7 +2,6 @@ const consoleStyles = require('../utils/consoleStyles')(),
     processFiles = require('../utils/processFiles')(),
     path = require('path'),
     fs = require('fs'),
-    ora = require('ora'),
     inquirer = require('inquirer'),
     clipboardy = require('clipboardy');
 
