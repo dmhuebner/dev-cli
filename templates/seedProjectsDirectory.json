@@ -36,6 +36,7 @@
     {
       "name": "angular-material-spa",
       "description": "An Angular Material SPA with navbar",
+      "customHelp": "This is some extra help information specific to the angular-material-spa generatable template. Any special instructions should be included here.",
       "customVariables": {
         "projectTitle": "Project Title",
         "projectAuthor": "Project Author",

@@ -3,7 +3,7 @@ const consoleStyles = require('../utils/consoleStyles')(),
     path = require('path'),
     fs = require('fs'),
     ora = require('ora'),
-    inquirer = require('inquirer');
+    inquirer = require('inquirer'),
     processConfigs = require('../utils/processConfigs')();
 
 module.exports = (args) => {
@@ -16,7 +16,7 @@ module.exports = (args) => {
   const currentTemplatesDirectory = parsedConfigData && parsedConfigData.generator && parsedConfigData.generator.templatesDirectory ? parsedConfigData.generator.templatesDirectory : null;
 
   // Set the templatesSourceDirectory to a custom templates directory if there is one. Otherwise default to the internal templates directory.
-  if (currentTemplatesDirectory && typeof(currentTemplatesDirectory) === 'string' && currentTemplatesDirectory.trim() !== 'none') {
+  if (currentTemplatesDirectory && typeof(currentTemplatesDirectory) === 'string' && currentTemplatesDirectory.trim().toLowerCase() !== 'none') {
     templates = fs.readdirSync(currentTemplatesDirectory);
     templatesSourceDirectory = currentTemplatesDirectory;
 

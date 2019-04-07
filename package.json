@@ -1,6 +1,6 @@
 {
-  "name": "dev-cli",
-  "version": "1.0.0",
+  "name": "@dmh/dev-cli",
+  "version": "1.1.0",
   "description": "Development CLI",
   "main": "app.js",
   "bin": {
