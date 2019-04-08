@@ -30,7 +30,7 @@
         "projectTitle": "Project Title",
         "projectAuthor": "Project Author",
         "projectDescription": "Description of project",
-        "firstModel": "First model name lowercase (foo)"
+        "firstModel": "First model name in camelCase (foo)"
       }
     },
     {

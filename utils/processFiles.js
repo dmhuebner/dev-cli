@@ -162,6 +162,10 @@ const processFiles = () => {
         additionalVariables[`${key}[kebabCase]`] = camelToKebabCase(variables[key]);
         // Underscore Case
         additionalVariables[`${key}[underscoreCase]`] = camelToKebabCase(variables[key], '_');
+        // Lower Case
+        additionalVariables[`${key}[lowerCase]`] = variables[key].toLowerCase();
+        // Upper Case
+        additionalVariables[`${key}[upperCase]`] = variables[key].toUpperCase();
       }
     }
 
