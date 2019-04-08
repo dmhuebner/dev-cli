@@ -14,6 +14,13 @@ Clone this Repo and cd into it to install:
 npm i -g .
 ```
 
+##### To Configure the Generate command:
+The **generate** command can be configured to reference your own generatable templates directory.
+
+```
+dev config generate
+```
+
 ---
 
 ## Help
@@ -73,9 +80,9 @@ To Create a Generator Template, create a base project that you want to be able t
 
 ##### Variable Casing
 
-You can also specify **casing** for any custom variables such as model names that may need to be in several cases throughout your project. You specify casing in your template projects by adding a case (in camelCase) inside **[ ]** brackets at the end of the variable. See example below:
+You can also specify **casing** for any custom variables such as model names that may need to be in several cases throughout your project. You specify casing in your template projects by adding a case **(in camelCase)** inside **[ ]** brackets at the end of the variable. See example below:
 
-Ex) If you have a model in a file that you want to be represented with a custom variable {%firstModel%} with a value of 'fooBar', you may have a need to express that variable value in camelCase, as well as capitalized, and in kebab-case.
+Ex) If you have a model in a file that you want to be represented with a custom variable {%firstModel%} with a value of 'fooBar', you may have a need to express that variable value in camelCase, as well as capitalized, in lowercase, in kebab-case, etc.
 
 **capitalized** 
 
@@ -89,9 +96,17 @@ You can add a kebab-case permutation of **{%firstModel%}** within the template p
 
 You can add an underscore_case permutation of **{%firstModel%}** within the template project like this: **{%firstModel[underscoreCase]%}** which would result in a value of 'foo_bar'.
 
-##### New Template Projects must be added to the "templates" directory within the dev-cli project.
+**lowerCase**
 
-##### New Template Projects meta-data must be added to the seedProjectsDirectory.json file in the "templates" directory.
+You can add a lowercase permutation of **{%firstModel%}** within the template project like this: **{%firstModel[lowerCase]%}** which would result in a value of 'foobar'.
+
+**upperCase**
+
+You can add an UPPERCASE permutation of **{%firstModel%}** within the template project like this: **{%firstModel[upperCase]%}** which would result in a value of 'FOOBAR'.
+
+##### If you have not configured the generate command to use your own custom templates directory, New Template Projects must be added to the "templates" directory within the dev-cli project. Otherwise, they should be added to your own custom generatable templates directory.
+
+##### New Template Projects' meta-data (name, description, custom variables, etc.) must be added to the seedProjectsDirectory.json file in the "templates" directory (either internal or custom depending on how the generate command is configured).
 
 #### *Functionality to automatically add new Template Projects coming soon!
 
