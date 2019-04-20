@@ -74,7 +74,15 @@ Once you provide values for each prompt you will be able to cd into your newly g
 
 #### Creating a New Generator Template Project
 
-Generator Template projects are boiler plate projects that include custom variables delimited with **{% %}** for example, **{%someCustomVar%}**.
+Generator Template projects are boiler plate projects that include custom variables delimited with **{% %}** by default for example, **{%someCustomVar%}**.
+
+##### Custom Delimiters: 
+
+You can also specify a **custom delimiter** for each generatable template instead of the default delimiter **{% %}**. For example, if you want to create a generatable template for a Django project (Django uses {% %} as framework syntax) you can specify a different delimiter for that template such as '==|| ||==' or '<) (>', etc.
+Your custom delimiter can be any series of characters separated by one or more spaces. To set a custom delimiter for a given generator template you just have to add a "delimiter" property to the corresponding object in the **seedProjectsDirectory.json** file and give it a string value with any series of characters separated by one or more spaces. 
+See the "example" generatable template in the templates directory within the dev-cli project for reference.
+
+##### To Create a Generator Template
 
 To Create a Generator Template, create a base project that you want to be able to generate, and replace file names and file content with as many custom variables (delimited with **{% %}**) as needed.
 
@@ -82,7 +90,7 @@ To Create a Generator Template, create a base project that you want to be able t
 
 You can also specify **casing** for any custom variables such as model names that may need to be in several cases throughout your project. You specify casing in your template projects by adding a case **(in camelCase)** inside **[ ]** brackets at the end of the variable. See example below:
 
-Ex) If you have a model in a file that you want to be represented with a custom variable {%firstModel%} with a value of 'fooBar', you may have a need to express that variable value in camelCase, as well as capitalized, in lowercase, in kebab-case, etc.
+Ex) If you have a model in a file that you want to be represented with a custom variable {%firstModel%} with a value of 'fooBar', you may have a need to express that variable value in camelCase, as well as capitalized, in lowerCase, in kebabCase, in underscoreCase, etc.
 
 **capitalized** 
 
@@ -104,7 +112,7 @@ You can add a lowercase permutation of **{%firstModel%}** within the template pr
 
 You can add an UPPERCASE permutation of **{%firstModel%}** within the template project like this: **{%firstModel[upperCase]%}** which would result in a value of 'FOOBAR'.
 
-##### If you have not configured the generate command to use your own custom templates directory, New Template Projects must be added to the "templates" directory within the dev-cli project. Otherwise, they should be added to your own custom generatable templates directory.
+##### If you have not configured the generate command to use your own custom seed templates directory, New Template Projects must be added to the "templates" directory within the dev-cli project in order to be used. Otherwise, they should be added to your own custom generatable templates directory.
 
 ##### New Template Projects' meta-data (name, description, custom variables, etc.) must be added to the seedProjectsDirectory.json file in the "templates" directory (either internal or custom depending on how the generate command is configured).
 

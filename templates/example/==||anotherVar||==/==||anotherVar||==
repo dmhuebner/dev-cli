@@ -1,0 +1,18 @@
+==||anotherVar||==
+
+Casing Examples:
+
+kebabCase
+==||anotherVar[kebabCase]||==
+
+capitalized
+==||anotherVar[capitalized]||==
+
+underscoreCase
+==||anotherVar[underscoreCase]||==
+
+lowerCase
+==||anotherVar[lowerCase]||==
+
+upperCase
+==||anotherVar[upperCase]||==
