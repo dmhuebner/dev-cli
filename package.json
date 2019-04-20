@@ -1,6 +1,6 @@
 {
   "name": "@dhuebner/dev-cli",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "Development CLI - Tools to improve development efficiency",
   "main": "app.js",
   "bin": {
