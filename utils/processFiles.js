@@ -5,8 +5,9 @@ const fs = require('fs'),
 const processFiles = () => {
 
   // Interpolate the template: {%var%}
-  // Take a given string and a variables object and find/replace all the keys within it
-  const interpolate = (string, variables) => {
+  // Take a given string and a variables object and find/replace all the keys within it with the delimiter passed in
+  // @param delimiterToUse - String - a string that represents the delimiter that should be used to interpolate
+  const interpolate = (string, variables, delimiterToUse) => {
     string = typeof(string) === 'string' && string.length > 0 ? string : '';
     variables = variables && typeof (variables) === 'object' ? variables : {};
 
@@ -19,7 +20,7 @@ const processFiles = () => {
     for (let key in variables) {
       if (variables.hasOwnProperty(key) && typeof(variables[key]) === 'string') {
         const replace = variables[key];
-        const find = `{%${key}%}`;
+        const find = delimiterToUse.split(' ').filter(item => item.length > 0 ).join(key);
 
         // Interpolate
         string = string.split(find).join(replace);
@@ -51,12 +52,12 @@ const processFiles = () => {
     });
   };
 
-  const writeInterpolatedFile = (toDir, element, fileContent, variables) => {
+  const writeInterpolatedFile = (toDir, element, fileContent, variables, delimiterToUse) => {
     return new Promise((resolve, reject) => {
       fs.open(toDir + '/' + element, 'wx', (error, fileDescriptor) => {
         if (!error && fileDescriptor) {
           // Write to file and close it
-          const interpolatedFileContent = interpolate(fileContent, variables);
+          const interpolatedFileContent = interpolate(fileContent, variables, delimiterToUse);
           fs.writeFile(fileDescriptor, interpolatedFileContent, (error) => {
             if (!error) {
               fs.close(fileDescriptor, (error) => {
@@ -96,35 +97,36 @@ const processFiles = () => {
   };
 
   // Interpolates fileNames with generator seed project's custom variables
-  const interpolateFileNames = (toDir, fileName, variables) => {
-    const newFileName = interpolate(fileName, variables);
+  const interpolateFileNames = (toDir, fileName, variables, delimiterToUse) => {
+    const newFileName = interpolate(fileName, variables, delimiterToUse);
     fs.renameSync(path.join(toDir, fileName), path.join(toDir, newFileName));
     return 'Success';
   };
 
-  /*
+  /**
   * @description: Generates a new project from a seed project
   *               Interpolates custom variables into the project such as projectName, projectAuthor, etc.
   *
   * @param: fromDir: String - Directory that should be used to create the project
   * @param: toDir: String - Directory to put the newly created project into
   * @param: variables: Object - An object with property values that should be interpolated and replaced throughout each file of the seed project
+  * @param: delimiterToUse: String - A string that represents the delimiter that should be used to interpolate the variables. For example: '{% %}' - The space in between is where the variable will be interpolated
   * */
-  const generateProjectFromSeed = (fromDir, toDir, variables) => {
+  const generateProjectFromSeed = (fromDir, toDir, variables, delimiterToUse) => {
     return new Promise((resolve, reject) => {
       try {
         // Interpolate toDir directory names
-        const interpolatedToDir = interpolate(toDir, variables);
+        const interpolatedToDir = interpolate(toDir, variables, delimiterToUse);
 
         fs.mkdirSync(interpolatedToDir);
         fs.readdirSync(fromDir).forEach(element => {
           // Check if element in the directory is a file
           if (fs.lstatSync(path.join(fromDir, element)).isFile()) {
             return readFile(fromDir, element).then((fileContent) => {
-              return writeInterpolatedFile(interpolatedToDir, element, fileContent, variables);
+              return writeInterpolatedFile(interpolatedToDir, element, fileContent, variables, delimiterToUse);
             }).then(() => {
               // Rename any files that start with foo if a modelVariable is passed in
-              return interpolateFileNames(interpolatedToDir, element, variables);
+              return interpolateFileNames(interpolatedToDir, element, variables, delimiterToUse);
             }).then(result => {
               resolve(result);
             }).catch(error => {
@@ -132,7 +134,7 @@ const processFiles = () => {
             });
           } else {
             // If its not a file its a directory - recursively generate files within that directory
-            generateProjectFromSeed(path.join(fromDir, element), path.join(interpolatedToDir, element), variables);
+            generateProjectFromSeed(path.join(fromDir, element), path.join(interpolatedToDir, element), variables, delimiterToUse);
           }
         });
       } catch (error) {
@@ -144,8 +146,7 @@ const processFiles = () => {
   // Parse a JSON string to an object in all cases, without throwing an error
   const parseJsonToObject = (string) => {
     try {
-      const obj = JSON.parse(string);
-      return obj;
+      return JSON.parse(string);
     } catch(error) {
       return {};
     }

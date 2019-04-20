@@ -1,1 +1,7 @@
-{"generate":{"templatesDirectory":"none","description":"Configurations for the Generate command include setting the templates directory that the generate command uses to a custom directory. As well as resetting it to the default internal directory. If you enter 'none', the internal, default templates directory will be used."}}
+{
+  "generate": {
+    "templatesDirectory": "none",
+    "description": "Configurations for the Generate command include setting the templates directory that the generate command uses to a custom directory. As well as resetting it to the default internal directory. If you enter 'none', the internal, default templates directory will be used.",
+    "defaultDelimiter": "{% %}"
+  }
+}

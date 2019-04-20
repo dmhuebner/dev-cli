@@ -3,7 +3,12 @@
     {
       "name": "example",
       "description": "Example seed project - just text files",
-      "customVariables": {}
+      "customHelp": "This example generatable project uses a custom delimiter to interpolate variables: ==|| ||==",
+      "delimiter": "==|| ||==",
+      "customVariables": {
+        "exampleVar": "Just an example variable",
+        "anotherVar": "Just another example variable"
+      }
     },
     {
       "name": "node-cli",

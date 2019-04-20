@@ -40,10 +40,16 @@ module.exports = (args) => {
       };
 
       const questionPromptsArray = [];
+      const currentConfigs = processConfigs.getConfigs();
+      let delimiterToUse = currentConfigs.generate.defaultDelimiter;
 
       // Concatenate basic variables with custom variables for template
       seedProjectsDirectory.seedProjects.some(projectSeedConfig => {
         if (projectSeedConfig.name === args._[1] && projectSeedConfig.customVariables) {
+
+          if (projectSeedConfig.delimiter) {
+            delimiterToUse = projectSeedConfig.delimiter;
+          }
 
           // Create question objects for each customVariable in the seed template
           for (let customVar in projectSeedConfig.customVariables) {
@@ -78,7 +84,7 @@ module.exports = (args) => {
         const currentWorkingDir = process.cwd();
 
         // Generate new project from seed project with customVariable prompt answers
-        processFiles.generateProjectFromSeed(`${templatesSourceDirectory}/${directory}`, `${currentWorkingDir}/${args._[2]}`, answers).then(() => {
+        processFiles.generateProjectFromSeed(`${templatesSourceDirectory}/${directory}`, `${currentWorkingDir}/${args._[2]}`, answers, delimiterToUse).then(() => {
           console.log(`${consoleStyles.setConsoleColor('green', 'Success')}\n(${consoleStyles.setConsoleColor('yellow', args._[1].trim())}) project titled "${consoleStyles.setConsoleColor('lightblue', variables.projectName)}" was created successfully!`);
           spinner.text = `Project ${consoleStyles.setConsoleColor('yellow', args._[2])} generated successfully`;
           spinner.succeed();
