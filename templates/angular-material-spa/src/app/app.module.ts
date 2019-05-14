@@ -6,7 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
 import { HomeComponent } from './pages/home/home.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { CoreModule } from './core/core.module';
+import { CoreModule } from './shared/core.module';
 
 @NgModule({
   declarations: [
