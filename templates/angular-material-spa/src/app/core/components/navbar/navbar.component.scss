@@ -1,0 +1,51 @@
+@import "../../../../styles.scss";
+
+.sidenav-container {
+  height: 100%;
+
+  .sidenav {
+    width: 200px;
+
+    .nav-item {
+      mat-icon {
+        margin-right: 0.5rem;
+      }
+
+      .menu-timer {
+        font-size: 1rem;
+        margin-left: auto;
+      }
+
+      &.active {
+        background-color: mat-color($primary);
+        color: #fff;
+      }
+    }
+  }
+
+  .sidenav .mat-toolbar {
+    background: inherit;
+  }
+
+  .mat-toolbar.mat-primary {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+
+    .navbar-logo {
+      margin-left: 1rem;
+      margin-right: 1rem;
+      cursor: pointer;
+
+      mat-icon {
+        position: relative;
+        top: 0.25rem;
+      }
+    }
+  }
+
+  .content-wrapper {
+    margin: 0;
+    padding: 0;
+  }
+}
