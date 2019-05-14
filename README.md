@@ -84,7 +84,7 @@ See the "example" generatable template in the templates directory within the dev
 
 ##### To Create a Generator Template
 
-To Create a Generator Template, create a base project that you want to be able to generate, and replace file names and file content with as many custom variables (delimited with **{% %}**) as needed.
+To Create a Generator Template, create a base project that you want to be able to generate, and replace file names and file content with as many custom variables as needed (delimited with **{% %}** by default or a specified custom delimiter).
 
 ##### Variable Casing
 
@@ -173,7 +173,11 @@ A custom generatable templates directory should include at least one generatable
     {
       "name": "example",
       "description": "Example seed project - just text files",
-      "customVariables": {}
+      "delimiter": "==|| ||==",
+      "customVariables": {
+        "exampleVar": "A example variable",
+        "anotherVar": "Another example variable"
+      }
     },
     {
       "name": "node-cli",
