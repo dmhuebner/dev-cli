@@ -71,9 +71,11 @@ ${consoleStyles.verticalSpace()}
     
     Create a new snippet with the content you currently have copied to your clipboard.
     
-    dev ${consoleStyles.setConsoleColor('lightblue', 'snippet')} ${consoleStyles.setConsoleColor('yellow', '<new>')}
-    dev ${consoleStyles.setConsoleColor('lightblue', 'snip')} ${consoleStyles.setConsoleColor('yellow', '<new>')}
-    dev ${consoleStyles.setConsoleColor('lightblue', 's')} ${consoleStyles.setConsoleColor('yellow', '<new>')}
+    dev ${consoleStyles.setConsoleColor('lightblue', 'snippet')} ${consoleStyles.setConsoleColor('yellow', 'new')}
+    dev ${consoleStyles.setConsoleColor('lightblue', 'snip')} ${consoleStyles.setConsoleColor('yellow', 'new')}
+    dev ${consoleStyles.setConsoleColor('lightblue', 's')} ${consoleStyles.setConsoleColor('yellow', 'new')}
+    
+    Provide values for the questions below:
     
     ${consoleStyles.setConsoleColor('yellow', '<name>')} .................. The name of the new snippet
     ${consoleStyles.setConsoleColor('yellow', '<description>')} ........... A description of the new snippet
