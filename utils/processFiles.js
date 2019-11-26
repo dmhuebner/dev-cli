@@ -125,7 +125,6 @@ const processFiles = () => {
             return readFile(fromDir, element).then((fileContent) => {
               return writeInterpolatedFile(interpolatedToDir, element, fileContent, variables, delimiterToUse);
             }).then(() => {
-              // Rename any files that start with foo if a modelVariable is passed in
               return interpolateFileNames(interpolatedToDir, element, variables, delimiterToUse);
             }).then(result => {
               resolve(result);
@@ -143,7 +142,7 @@ const processFiles = () => {
     });
   };
 
-  // Parse a JSON string to an object in all cases, without throwing an error
+  // Parse a JSON string to an object in all cases without throwing an error
   const parseJsonToObject = (string) => {
     try {
       return JSON.parse(string);
