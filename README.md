@@ -260,18 +260,40 @@ dev help config-generate
 dev config generate reset
 ```
 
+### Generate with CI/CD workflow:
+
+#### -args flag
+
+The generate command can take a `-args` flag to provide the values up front for the variables for the type of project you want to generate.
+
+This functionality is included to make it easier to use the dev-cli generate command in a CI/CD workflow 
+(You don't have to work with the command line prompts, you can just provide the variable arguments to the generate command up front).
+
+**To Use**
+
+Note - In the example below we are using the node-express-api template which has 4 variables: projectTitle, projectAuthor, projectDescription, and firstModel.
+
+```
+dev generate node-express-api new-node-api -args="New Node API, Author, Some Description, someModel"
+```
+
+To use the -args flag, put `-args` after your new project name and set it equal to a string with each argument value separated by a comma (",").
+The arguments should match up with the variables for the project you are generating.
+For the example above, the node-express-api generatable has the 4 variables listed above. 
+The number of arguments you pass to the -args flag must match the number of variables for that generatable.
+
 ---
 
 #### Version
 
 Show **dev-cli** current version
 
-```$xslt
+```
 dev -v
 ```
 
 or
 
-```$xslt
+```
 dev version
 ```
