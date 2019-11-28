@@ -15,7 +15,7 @@ module.exports = (args) => {
 
   // Check if there is a template that matches the project_type argument
   if (templates && templates.length && templates.indexOf(templateProject) !== -1) {
-    if (newProjectName && newProjectName.split(' ').length < 2) {
+    if (newProjectName && newProjectName.split(',').length < 2) {
 
       console.log(consoleStyles.horizontalLine('-'));
       console.log(consoleStyles.setConsoleColor('lightblue', `Generating ${templateProject}`));
@@ -41,7 +41,7 @@ module.exports = (args) => {
 
           // argsFlag is a string of values separated by " " - used to automatically supply values to projectTemplate variables
           if (argsFlag) {
-            quickVariableAnswers = setProjectVariableAnswers(templateProject, projectSeedConfig.customVariables, argsFlag.split(' '));
+            quickVariableAnswers = setProjectVariableAnswers(templateProject, projectSeedConfig.customVariables, argsFlag.split(',').map(a => a.trim()));
           } else {
             questionPromptsArray = createQuestionObjects(projectSeedConfig);
           }
