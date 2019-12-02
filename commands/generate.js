@@ -136,7 +136,7 @@ module.exports = (args) => {
     if (currentTemplatesDirectory && typeof(currentTemplatesDirectory) === 'string' && currentTemplatesDirectory.trim().toLowerCase() !== 'none') {
       sourceDirs.templates = fs.readdirSync(currentTemplatesDirectory);
       sourceDirs.templatesSourceDirectory = currentTemplatesDirectory;
-      sourceDirs.seedProjectsDirectory = processConfigs.generator.getSeedProjectsDir(templatesSourceDirectory);
+      sourceDirs.seedProjectsDirectory = processConfigs.generator.getSeedProjectsDir(sourceDirs.templatesSourceDirectory);
     } else {
       sourceDirs.templates = fs.readdirSync(path.join(__dirname, '/../templates'));
       sourceDirs.templatesSourceDirectory = path.join(__dirname, '/../templates');
