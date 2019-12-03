@@ -138,8 +138,9 @@ module.exports = (args) => {
       sourceDirs.templatesSourceDirectory = currentTemplatesDirectory;
       sourceDirs.seedProjectsDirectory = processConfigs.generator.getSeedProjectsDir(sourceDirs.templatesSourceDirectory);
     } else {
-      sourceDirs.templates = fs.readdirSync(path.join(__dirname, '/../templates'));
-      sourceDirs.templatesSourceDirectory = path.join(__dirname, '/../templates');
+      const internalTemplatesPath = path.join(__dirname, '/../templates');
+      sourceDirs.templates = fs.readdirSync(internalTemplatesPath);
+      sourceDirs.templatesSourceDirectory = internalTemplatesPath;
       sourceDirs.seedProjectsDirectory = require('../templates/seedProjectsDirectory');
     }
 
